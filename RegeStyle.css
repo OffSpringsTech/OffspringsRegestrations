@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+h3{
+  text-align: center;
+  text-decoration: underline solid;
+
+    
+}
+form {
+    max-width: 400px;
+    margin: auto;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+.error {
+    color: red;
+}
+#rege1{
+    margin: 10% 0px 10% 0px;
+    align-items: center;
+ 
+}
