@@ -1,101 +1,117 @@
-let clickEvent=document.getElementById('submit');
-clickEvent.addEventListener('click',()=>{
+const firstNameEl=document.getElementById("firstName");
+const firstNameError=document.getElementById("firstNameError")
+
+const lastNameEl=document.getElementById("lastName");
+const lastNameError=document.getElementById("lastNameError")
+
+const emailEl = document.getElementById("email");
+const emailError=document.getElementById("emailError")
+
+const phoneNumberEl = document.getElementById("phoneNumber");
+const phoneNumberError=document.getElementById("phoneNumberError")
+
+const passwordEl = document.getElementById("password");
+const passwordError=document.getElementById("passwordError")
+
+const dobEl=document.getElementById("dob");
+const dobError=document.getElementById("dobError")
+
+const submitEl = document.getElementById("submit");
+
+const url = 'https://socialapis-yrtm.onrender.com/user/signin';
 
 
-    resetErrors();
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-    var dob = document.getElementById('dob').value;
+const validateInputs=(e,el)=>{
+  el.textContent=e.target.value===""?"*Required":''
+};
 
 
-    var isValid = validateForm(name, email, phone, dob);
+  firstNameEl.addEventListener('blur',(e)=>{
+    validateInputs(e,firstNameError);
+  });
 
-    if (isValid) {
-        var userData = {
-            name: name,
-            email: email,
-            phone: phone,
-            dob: dob
-        };
 
-        var Url = '';
+  lastNameEl.addEventListener('blur',(e)=>{
+    validateInputs(e,lastNameError);
+  });
 
-        fetch(Url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('API Response:', data);
-            alert('Registration successful!');
-            document.getElementById('registrationForm').reset();
-        })
-        .catch(error => {
-            console.error('API Error:', error);
-            alert('Registration failed. Please try again later.');
-        });
-    }
+  emailEl.addEventListener('blur',(e)=>{
+    validateInputs(e,emailError);
+  });
 
-       
-        console.log("Name:", name);
-        console.log("Email:", email);
-        console.log("Phone:", phone);
-        console.log("Date of Birth:", dob);
+  phoneNumberEl.addEventListener('blur',(e)=>{
+    validateInputs(e,phoneNumberError);
+  });
 
-      
-        document.getElementById('registrationForm').reset();
-    }
-);
-function validateForm(name, email, phone, dob) {
-    var isValid = true;
+  passwordEl.addEventListener('blur',(e)=>{
+    validateInputs(e,passwordError);
+  });
 
-    if (!name) {
-        displayError('nameError', 'Name is required.');
-        isValid = false;
-    }
+  dobEl.addEventListener('blur',(e)=>{
+    validateInputs(e,dobError);
+  });
 
-    if (!email || !isValidEmail(email)) {
-        displayError('emailError', 'Valid email is required.');
-        isValid = false;
-    }
 
-    if (!phone || !isValidPhoneNumber(phone)) {
-        displayError('phoneError', 'Valid phone number is required.');
-        isValid = false;
-    }
 
-    if (!dob) {
-        displayError('dobError', 'Date of Birth is required.');
-        isValid = false;
-    }
-
-    return isValid;
-}
-
-function isValidEmail(email) {
+  const postDataToDb=()=>{
     
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+  const data = {
+    "firstName": firstNameEl.value,
+    "lastName": lastNameEl.value,
+        "email": emailEl.value,
+        "phoneNumber": phoneNumberEl.value,
+        "password": passwordEl.value,
+        "dob":dobEl.value
+    }
+   
 
-function isValidPhoneNumber(phone) {
 
-    var phoneRegex = /^\d{10}$/;
-    return phoneRegex.test(phone);
-}
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  };
 
-function displayError(elementId, errorMessage) {
-    document.getElementById(elementId).innerText = errorMessage;
-}
+  fetch(url, options)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    // Check if the response is not empty before trying to parse it as JSON
+    if (response.headers.get('content-length') === '0') {
+      console.log('User Registered');
+      // You may want to perform additional actions here
+      return;
+    }
 
-function resetErrors() {
-    var errorElements = document.querySelectorAll('.error');
-    errorElements.forEach(function (element) {
-        element.innerText = '';
-    });
-}
+    return response.json();
+  })
+  .then(data => {
+    // This block will be executed only if the response is in JSON format
+    console.log('Success:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
+  }
+
+
+
+
+
+submitEl.addEventListener('click', async (e) => {
+  e.preventDefault();
+  if(firstNameEl.value!=='' || lastNameEl.value!=='' || emailEl.value!=='' || phoneNumberEl.value!=='' || passwordEl.value!=='' || dobEl.value!==''){
+    postDataToDb();
+    alert("User Regesterd Successfully")
+
+  }
+  
+  else{
+    alert("ENTER Valid Details")
+  }
+});
