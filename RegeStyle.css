@@ -26,7 +26,8 @@ input {
     border-radius: 8px;
     outline: none;
 }
-button {
+
+.regester-btn {
     background-color: #f75003;
     color: white;
     padding: 10px 15px;
@@ -57,10 +58,20 @@ button {
     justify-content: center;
     display: flex;
     align-items: center;
+}
+
+.password-icon-con{
+        display: flex;
+        align-items: center;
 
 }
-.passIcon{
-    margin-left: -30px; 
+.password-icon{
+    margin-left: -40px;
    cursor:pointer;
-   margin: top 10px;;
+   background:#00000000;
+   border: 0;
+}
+
+.d-none{
+    display: none;
 }

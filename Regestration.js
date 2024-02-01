@@ -18,8 +18,28 @@ const dobError=document.getElementById("dobError")
 
 const submitEl = document.getElementById("submit");
 
+
+const eyeOpen=document.getElementById("eyeOpen");
+
+const eyeClose=document.getElementById("eyeClose");
+
+
 const url = 'https://socialapis-yrtm.onrender.com/user/signin';
 
+const passwordIconEl=document.getElementById("passwordIcon");
+
+passwordIconEl.addEventListener('click',()=>{
+  
+    if(passwordEl.type==='password'){
+      passwordEl.type='text'
+      eyeOpen.classList.toggle("d-none")
+      eyeClose.classList.toggle("d-none")
+    }else{
+      passwordEl.type="password"
+      eyeOpen.classList.toggle("d-none")
+      eyeClose.classList.toggle("d-none")
+    }
+})
 
 const validateInputs=(e,el)=>{
   el.textContent=e.target.value===""?"*Required":''
@@ -74,8 +94,7 @@ const validateInputs=(e,el)=>{
     body: JSON.stringify(data)
   };
 
-  fetch(url, options)
-  .then(response => {
+  fetch(url, options).then(response => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -103,7 +122,7 @@ const validateInputs=(e,el)=>{
 
 
 
-submitEl.addEventListener('click', async (e) => {
+submitEl.addEventListener('click',  (e) => {
   e.preventDefault();
   if(firstNameEl.value!=='' || lastNameEl.value!=='' || emailEl.value!=='' || phoneNumberEl.value!=='' || passwordEl.value!=='' || dobEl.value!==''){
     postDataToDb();
