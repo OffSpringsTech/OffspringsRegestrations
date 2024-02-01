@@ -28,6 +28,24 @@ const url = 'https://socialapis-yrtm.onrender.com/user/signin';
 
 const passwordIconEl=document.getElementById("passwordIcon");
 
+const logInEl = document.getElementById("lodInId");
+
+const logInIdConEl = document.getElementById("logInId-con");
+const regeIdEl= document.getElementById("regeId")
+
+
+logInEl.addEventListener('click',(c)=>{
+  c.preventDefault();
+
+  if(logInIdConEl.style.display === 'none'){
+    regeIdEl.style.display='none'
+    logInIdConEl.style.display = 'block';
+    
+  }else{
+    logInIdConEl.style.display = 'none';
+  }
+})
+
 passwordIconEl.addEventListener('click',()=>{
   
     if(passwordEl.type==='password'){
