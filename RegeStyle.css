@@ -5,6 +5,7 @@ body {
 h3{
   text-align: center;
   text-decoration: underline solid;
+  
 
     
 }
@@ -17,23 +18,40 @@ input {
     padding: 10px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     box-sizing: border-box;
+    border-radius: 8px;
 }
 button {
-    background-color: #4CAF50;
+    background-color: #f75003;
     color: white;
     padding: 10px 15px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
     width: 100%;
+    border-radius: 10px;
 }
 .error {
     color: red;
+    font-size: 10px;
+    margin-bottom: 20px;
+    
 }
 #rege1{
-    margin: 10% 0px 10% 0px;
+    margin: 0 0px 10% 0px;
     align-items: center;
  
+}
+
+.regForm{
+    background: linear-gradient(140deg, #a371ca, #687d8a);
+    width: max-content;
+    border-radius: 15px;
+    padding: 20px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }

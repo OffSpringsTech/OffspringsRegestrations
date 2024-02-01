@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Regestrations</title>
-    <link rel="stylesheet" href="RegeStyle.css" >
-</head>
-<body>
-    <div id="rege1">
+    <link rel="stylesheet" href="RegeStyle.css" />
+  </head>
+  <body>
+    <div class="regForm">
+      <div id="rege1">
         <h3>Registration Form For OffSpring</h3>
         <form id="registrationForm">
-            <label for="name">First Name :</label>
-            <input type="text" id="fristName" name="name" required>
-            <span id="firstNameError" class="error"></span>
+          <label for="firstName">First Name :</label>
+          <input type="text" id="firstName" name="name" required />
+          <p id="firstNameError" class="error"></p>
 
-            <label for="name">Last Name :</label>
-            <input type="text" id="lastName" name="name" required>
-            <span id="lastNameError" class="error"></span>
-            
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
-            <span id="emailError" class="error"></span>
+          <label for="lastName">Last Name :</label>
+          <input type="text" id="lastName" name="name" required />
+          <p id="lastNameError" class="error"></p>
 
-            <label for="phoneNumber">Phone Number :</label>
-            <input type="number" id="phoneNumber" name="phone" required>
-            <span id="phoneNumberError" class="error"></span>
-    
-            <label for="password">Password :</label>
-            <input type="tel" id="password" name="phone" required>
-            <span id="passwordError" class="error"></span>
-    
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required>
-            <span id="dobError" class="error"></span>
-    
-            <span id="dobError" class="error"></span>
-    
-            <button type="submit" id="submit">Register</button>
+          <label for="email">Email :</label>
+          <input type="email" id="email" name="email" required />
+          <p id="emailError" class="error"></p>
+
+          <label for="phoneNumber">Phone Number :</label>
+          <input type="number" id="phoneNumber" name="phone" required />
+          <p id="phoneNumberError" class="error"></p>
+
+          <label for="password">Password :</label>
+          <input type="tel" id="password" name="phone" required />
+          <p id="passwordError" class="error"></p>
+
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required />
+          <p id="dobError" class="error"></p>
+
+          <button type="submit" id="submit">Register</button>
         </form>
+      </div>
     </div>
-    <script src="Regestration.js" ></script>
-</body>
+    <script src="Regestration.js"></script>
+  </body>
 </html>
