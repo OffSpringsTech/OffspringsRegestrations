@@ -1,23 +1,25 @@
 const firstNameEl=document.getElementById("firstName");
-const firstNameError=document.getElementById("firstNameError")
-
+const firstNameError=document.getElementById("firstNameError");
 const lastNameEl=document.getElementById("lastName");
-const lastNameError=document.getElementById("lastNameError")
+const lastNameError=document.getElementById("lastNameError");
 
 const emailEl = document.getElementById("email");
-const emailError=document.getElementById("emailError")
-
+const emailError=document.getElementById("emailError");
 const phoneNumberEl = document.getElementById("phoneNumber");
-const phoneNumberError=document.getElementById("phoneNumberError")
+const phoneNumberError=document.getElementById("phoneNumberError");
 
 const passwordEl = document.getElementById("password");
-const passwordError=document.getElementById("passwordError")
+const passwordError=document.getElementById("passwordError");
 
 const dobEl=document.getElementById("dob");
-const dobError=document.getElementById("dobError")
+const dobError=document.getElementById("dobError");
 
 const submitEl = document.getElementById("submit");
 
+const regestrationResponse=document.getElementById("regestrationResponse");
+
+const spinnerBg=document.getElementById("spinnerBg");
+document.body.removeChild(spinnerBg);
 
 const eyeOpen=document.getElementById("eyeOpen");
 
@@ -104,7 +106,7 @@ const validateInputs=(e,el)=>{
         "password": passwordEl.value,
         "dob":dobEl.value
     }
-   
+  
 
 
   const options = {
@@ -127,10 +129,18 @@ const validateInputs=(e,el)=>{
       return;
     }
 
-    return response.json();
+    return response.text();
   })
   .then(data => {
+    document.body.removeChild(spinnerBg);
     // This block will be executed only if the response is in JSON format
+    if(data==="User Registered"){
+      regestrationResponse.textContent="Regestration Successful";
+      regestrationResponse.style.color="#00ff51"
+    }else{
+      regestrationResponse.textContent=data
+      regestrationResponse.style.color="red"
+    }
     console.log('Success:', data);
   })
   .catch(error => {
@@ -146,9 +156,8 @@ const validateInputs=(e,el)=>{
 submitEl.addEventListener('click',  (e) => {
   e.preventDefault();
   if(firstNameEl.value!=='' || lastNameEl.value!=='' || emailEl.value!=='' || phoneNumberEl.value!=='' || passwordEl.value!=='' || dobEl.value!==''){
-    postDataToDb();
-    alert("User Regesterd Successfully")
-
+    document.body.appendChild(spinnerBg);
+      postDataToDb(); 
   }
   
   else{
