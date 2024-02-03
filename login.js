@@ -1,28 +1,27 @@
-const logInEl = document.getElementById("lodinId");
-const logInIdConEl = document.getElementById("loginId-con");
-const regeIdEl= document.getElementById("regeId");
-const regeIdButtEl = document.getElementById("regeIdButt");
-const loginFormEl=document.getElementById("login-form");
-const loginPasswordEl = document.getElementById("loginPassword");
-const loginPhoneNumber = document.getElementById("loginPhoneNumber");
+const loginFormEl=document.getElementById("loginForm");
+
+const loginPhoneNumberEl=document.getElementById("loginPhoneNumber");
+
+const loginPhoneNumberErrorEl=document.getElementById("loginPhoneNumberError");
+
+const loginPasswordEl=document.getElementById("loginPassword");
+const loginPasswordError=document.getElementById("loginPasswordError");
+
+const passwordIconEl=document.getElementById("passwordIcon");
 
 
-// logInEl.addEventListener('click',(c)=>{
-//   c.preventDefault();
-//     regeIdEl.style.display='none'
-//     logInIdConEl.style.display = 'block';   
-// })
 
-// regeIdButtEl.addEventListener('click',(r)=>{
-//   r.preventDefault();
-//   logInIdConEl.style.display='none'
-//   regeIdEl.style.display = 'block';  
+console.log(loginPhoneNumberEl,loginPhoneNumberErrorEl)
 
-// })
-firstNameEl.addEventListener('blur',(e)=>{
-  validateInputs(e,firstNameError);
-});
+const validateInputs=(e,el)=>{
+  el.textContent=e.target.value===""?"*Required":''
+};
 
-loginFormEl.addEventListener('click', (e)=>{
- 
-} )
+
+loginPhoneNumberEl.addEventListener('blur',(e)=>{
+  validateInputs(e,loginPhoneNumberErrorEl);
+})
+
+loginPasswordEl.addEventListener('blur',(e)=>{
+  validateInputs(e,loginPasswordError);
+})
