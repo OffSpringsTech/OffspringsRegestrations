@@ -1,101 +1,146 @@
-let clickEvent=document.getElementById('submit');
-clickEvent.addEventListener('click',()=>{
+const firstNameEl=document.getElementById("firstName");
+const firstNameError=document.getElementById("firstNameError");
+const lastNameEl=document.getElementById("lastName");
+const lastNameError=document.getElementById("lastNameError");
+
+const emailEl = document.getElementById("email");
+const emailError=document.getElementById("emailError");
+const phoneNumberEl = document.getElementById("phoneNumber");
+const phoneNumberError=document.getElementById("phoneNumberError");
+
+const passwordEl = document.getElementById("password");
+const passwordError=document.getElementById("passwordError");
+
+const dobEl=document.getElementById("dob");
+const dobError=document.getElementById("dobError");
+
+const submitEl = document.getElementById("submit");
+
+const regestrationResponse=document.getElementById("regestrationResponse");
+
+const spinnerBg=document.getElementById("spinnerBg");
+document.body.removeChild(spinnerBg);
+
+const eyeOpen=document.getElementById("eyeOpen");
+
+const eyeClose=document.getElementById("eyeClose");
 
 
-    resetErrors();
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-    var dob = document.getElementById('dob').value;
+const url = 'https://socialapis-yrtm.onrender.com/user/signin';
+
+const passwordIconEl=document.getElementById("passwordIcon");
 
 
-    var isValid = validateForm(name, email, phone, dob);
-
-    if (isValid) {
-        var userData = {
-            name: name,
-            email: email,
-            phone: phone,
-            dob: dob
-        };
-
-        var Url = '';
-
-        fetch(Url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('API Response:', data);
-            alert('Registration successful!');
-            document.getElementById('registrationForm').reset();
-        })
-        .catch(error => {
-            console.error('API Error:', error);
-            alert('Registration failed. Please try again later.');
-        });
+passwordIconEl.addEventListener('click',()=>{
+  
+    if(passwordEl.type==='password'){
+      passwordEl.type='text'
+      eyeOpen.classList.toggle("d-none")
+      eyeClose.classList.toggle("d-none")
+    }else{
+      passwordEl.type="password"
+      eyeOpen.classList.toggle("d-none")
+      eyeClose.classList.toggle("d-none")
     }
+})
 
-       
-        console.log("Name:", name);
-        console.log("Email:", email);
-        console.log("Phone:", phone);
-        console.log("Date of Birth:", dob);
+const validateInputs=(e,el)=>{
+  el.textContent=e.target.value===""?"*Required":''
+};
 
-      
-        document.getElementById('registrationForm').reset();
-    }
-);
-function validateForm(name, email, phone, dob) {
-    var isValid = true;
 
-    if (!name) {
-        displayError('nameError', 'Name is required.');
-        isValid = false;
-    }
+  firstNameEl.addEventListener('blur',(e)=>{
+    validateInputs(e,firstNameError);
+  });
 
-    if (!email || !isValidEmail(email)) {
-        displayError('emailError', 'Valid email is required.');
-        isValid = false;
-    }
 
-    if (!phone || !isValidPhoneNumber(phone)) {
-        displayError('phoneError', 'Valid phone number is required.');
-        isValid = false;
-    }
+  lastNameEl.addEventListener('blur',(e)=>{
+    validateInputs(e,lastNameError);
+  });
 
-    if (!dob) {
-        displayError('dobError', 'Date of Birth is required.');
-        isValid = false;
-    }
+  emailEl.addEventListener('blur',(e)=>{
+    validateInputs(e,emailError);
+  });
 
-    return isValid;
-}
+  phoneNumberEl.addEventListener('blur',(e)=>{
+    validateInputs(e,phoneNumberError);
+  });
 
-function isValidEmail(email) {
+  passwordEl.addEventListener('blur',(e)=>{
+    validateInputs(e,passwordError);
+  });
+
+  dobEl.addEventListener('blur',(e)=>{
+    validateInputs(e,dobError);
+  });
+
+
+
+  const postDataToDb=()=>{
     
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+  const data = {
+    "firstName": firstNameEl.value,
+    "lastName": lastNameEl.value,
+        "email": emailEl.value,
+        "phoneNumber": phoneNumberEl.value,
+        "password": passwordEl.value,
+        "dob":dobEl.value
+    }
+  
 
-function isValidPhoneNumber(phone) {
 
-    var phoneRegex = /^\d{10}$/;
-    return phoneRegex.test(phone);
-}
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  };
 
-function displayError(elementId, errorMessage) {
-    document.getElementById(elementId).innerText = errorMessage;
-}
+  fetch(url, options).then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    // Check if the response is not empty before trying to parse it as JSON
+    if (response.headers.get('content-length') === '0') {
+      console.log('User Registered');
+      // You may want to perform additional actions here
+      return;
+    }
 
-function resetErrors() {
-    var errorElements = document.querySelectorAll('.error');
-    errorElements.forEach(function (element) {
-        element.innerText = '';
-    });
-}
+    return response.text();
+  })
+  .then(data => {
+    document.body.removeChild(spinnerBg);
+    // This block will be executed only if the response is in JSON format
+    if(data==="User Registered"){
+      regestrationResponse.textContent="Regestration Successful";
+      regestrationResponse.style.color="#00ff51"
+    }else{
+      regestrationResponse.textContent=data
+      regestrationResponse.style.color="red"
+    }
+    console.log('Success:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
+  }
+
+
+
+
+
+submitEl.addEventListener('click',  (e) => {
+  e.preventDefault();
+  if(firstNameEl.value!=='' || lastNameEl.value!=='' || emailEl.value!=='' || phoneNumberEl.value!=='' || passwordEl.value!=='' || dobEl.value!==''){
+    document.body.appendChild(spinnerBg);
+      postDataToDb(); 
+  }
+  
+  else{
+    alert("ENTER Valid Details")
+  }
+});
