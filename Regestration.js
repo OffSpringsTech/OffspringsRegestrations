@@ -115,6 +115,12 @@ const validateInputs=(e,el)=>{
     document.body.removeChild(spinnerBg);
     // This block will be executed only if the response is in JSON format
     if(data==="User Registered"){
+      firstNameEl.value='';
+lastNameEl.value='';
+emailEl.value='';
+phoneNumberEl.value='';
+passwordEl.value='';
+dobEl.value='';
       regestrationResponse.textContent="Regestration Successful";
       regestrationResponse.style.color="#00ff51"
     }else{
