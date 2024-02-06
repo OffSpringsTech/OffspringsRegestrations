@@ -79,8 +79,8 @@ const validateInputs=(e,el)=>{
   const postDataToDb=()=>{
     
   const data = {
-    "firstName": firstNameEl.value,
-    "lastName": lastNameEl.value,
+        "firstName": firstNameEl.value,
+        "lastName": lastNameEl.value,
         "email": emailEl.value,
         "phoneNumber": phoneNumberEl.value,
         "password": passwordEl.value,

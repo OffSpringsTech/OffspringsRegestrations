@@ -62,11 +62,20 @@ loginPasswordEl.addEventListener('blur',(e)=>{
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.text();
+      return response.json();
     })
     .then(data => {
       logCon.classList.add("login-response")
-      logCon.textContent=`YOUR DATA             ${data}`
+      logCon.textContent=`YOUR DATA     
+{
+Fist Name:${data.firstName}
+Last Name:${data.lastName}
+Email:${data.email}
+Phone Number:${data.phoneNumber}
+Password:${data.password}
+DOB:${data.dob}
+}
+`
       console.log('Success:', data);
     })
     .catch(error => {
