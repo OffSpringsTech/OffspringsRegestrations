@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="RegeStyle.css" />
   </head>
   <body>
+    <!--from here to-->
     <div id="spinnerBg" class="spinner-bg-layer d-none">
 
       <svg xmlns="http://www.w3.org/2000/svg"  height="3.2em" viewBox="0 0 24 24">
@@ -14,7 +15,8 @@
           <animateTransform attributeName="transform" dur="0.6s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" />
         </path>
       </svg>
-
+      <!--here this is for loding page-->
+      <!--here to -->
     </div>
     <div class="regeId">
       <h1 id="regestrationResponse"></h1>
@@ -44,6 +46,7 @@
           
           <div class="password-icon-con">
               <input type="password" id="password" name="phone" class="inputBox" required />
+              <!--here to-->
               <span id="passwordIcon" class="password-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="eye-open" id="eyeOpen" viewBox="0 0 16 16">
                   <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
@@ -56,6 +59,7 @@
                     <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
                 </svg>
             </span>
+            <!--here password icon for password visible &  hidden-->
         </div>
         <p id="passwordError" class="error"></p>
         
@@ -63,15 +67,17 @@
         <input type="date" id="dob" name="dob" class="inputBox" required />
         <p id="dobError" class="error"></p>
         
-        <button type="submit" id="submit" class="regester-btn">Register</button>
-        <p class="logIn">If you'r  Register please <a href="login.html">LogIn</a></p>
-    </form>
+        
+        <button type="submit" id="submit" class="regester-btn">Register</button>  <!--this to submit the data which is enter in the form-->
+        <p class="logIn">If you'r  Register please <a href="login.html">LogIn</a></p> <!--To redirect to login page-->
+      </form>
+    </div>
+  </div>
 </div>
-        </div>
-   </div>
+<!--here this is regestration form-->
 
  
-  
+  <!--this to link javaScript to the page-->
     <script src="Regestration.js"></script>
    
 
